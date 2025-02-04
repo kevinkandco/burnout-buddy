@@ -48,9 +48,9 @@ const BurnoutCalculator = () => {
   };
 
   const getRiskLevel = (score: number) => {
-    if (score <= 3) return { level: "Low", color: "text-sage-500" };
-    if (score <= 6) return { level: "Moderate", color: "text-orange-500" };
-    return { level: "High", color: "text-red-500" };
+    if (score <= 3) return { level: "Low Risk", color: "text-sage-500" };
+    if (score <= 6) return { level: "Moderate Risk", color: "text-orange-500" };
+    return { level: "High Risk", color: "text-red-500" };
   };
 
   const getBurnoutWindow = (score: number) => {
@@ -274,19 +274,6 @@ const BurnoutCalculator = () => {
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            <BurnoutRecommendations
-              workHours={inputs.hoursWorked}
-              sleepHours={inputs.sleepHours}
-              selfCareHours={inputs.selfCareHours}
-            />
-
-            <BurnoutVisuals
-              score={calculateRiskScore()}
-              workHours={inputs.hoursWorked}
-              sleepHours={inputs.sleepHours}
-              selfCareHours={inputs.selfCareHours}
-            />
-
             <div ref={resultsRef}>
               <Card className="p-6 shadow-lg bg-white/80 backdrop-blur-sm border-[#E5DEFF]">
                 <div className="space-y-6">
@@ -320,6 +307,13 @@ const BurnoutCalculator = () => {
                       </div>
                     </div>
                   </div>
+
+                  <BurnoutVisuals
+                    score={calculateRiskScore()}
+                    workHours={inputs.hoursWorked}
+                    sleepHours={inputs.sleepHours}
+                    selfCareHours={inputs.selfCareHours}
+                  />
 
                   {/* Share buttons section - outside exportRef */}
                   <div className="space-y-4">
@@ -375,6 +369,12 @@ const BurnoutCalculator = () => {
                 </div>
               </Card>
             </div>
+
+            <BurnoutRecommendations
+              workHours={inputs.hoursWorked}
+              sleepHours={inputs.sleepHours}
+              selfCareHours={inputs.selfCareHours}
+            />
 
             <p className="text-xs text-center text-[#8E9196]">
               Your data is not stored or shared. This assessment is for informational purposes only.
