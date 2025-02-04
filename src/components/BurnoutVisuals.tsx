@@ -36,7 +36,7 @@ const BurnoutVisuals = ({ score, workHours, sleepHours, selfCareHours }: Burnout
     <Card className="p-6 border-[#E5DEFF] bg-white/80 backdrop-blur-sm">
       <div className="grid md:grid-cols-2 gap-6">
         <div className="h-64">
-          <h4 className="text-center text-sm font-medium text-[#7E69AB] mb-1">Risk Score</h4>
+          <h4 className="text-center text-sm font-medium text-[#7E69AB]">Risk Score</h4>
           <ResponsiveContainer width="100%" height="100%">
             <RadialBarChart
               cx="50%"
