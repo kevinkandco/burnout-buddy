@@ -138,10 +138,10 @@ const BurnoutCalculator = () => {
   const burnoutWindow = getBurnoutWindow(score);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#F1F0FB] to-white p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-white p-4 sm:p-6 md:p-8">
       <div className="max-w-2xl mx-auto space-y-8 animate-fade-in">
         <div className="text-center space-y-4">
-          <div className="bg-gradient-to-b from-[#E5DEFF] to-transparent p-6 rounded-lg mb-6">
+          <div className="bg-white p-6 rounded-lg mb-6">
             <img 
               src="/lovable-uploads/2ba54d49-c430-40cf-b7f4-6109f7e05336.png" 
               alt="Sunsama Logo" 
@@ -291,7 +291,7 @@ const BurnoutCalculator = () => {
               <Card className="p-6 shadow-lg bg-white/80 backdrop-blur-sm border-[#E5DEFF]">
                 <div className="space-y-6">
                   <div ref={exportRef} className="bg-white p-6 rounded-lg">
-                    <div className="bg-gradient-to-b from-[#E5DEFF] to-transparent p-6 rounded-t-lg mb-6">
+                    <div className="bg-white p-6 rounded-lg mb-6">
                       <img 
                         src="/lovable-uploads/2ba54d49-c430-40cf-b7f4-6109f7e05336.png" 
                         alt="Sunsama Logo" 
