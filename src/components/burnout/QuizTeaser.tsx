@@ -14,7 +14,7 @@ const QuizTeaser = ({ workHours, sleepHours, selfCareHours }: QuizTeaserProps) =
       return "Long hours can lead to burnout. See how Sunsama helps maintain work-life balance.";
     }
     if (sleepHours < 6) {
-      return "Quality sleep is crucial. Learn how Sunsama helps you plan better days for better nights.";
+      return "Modern professionals use Sunsama to get more done and go home happy. See how it works.";
     }
     if (selfCareHours < 5) {
       return "Self-care matters. Discover how Sunsama helps you make time for what's important.";
