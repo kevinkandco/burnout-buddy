@@ -145,7 +145,7 @@ const BurnoutCalculator = () => {
             <img 
               src="/lovable-uploads/2ba54d49-c430-40cf-b7f4-6109f7e05336.png" 
               alt="Sunsama Logo" 
-              className="h-8 mx-auto"
+              className="h-6 mx-auto"
             />
           </div>
           <h1 className="text-4xl font-light text-[#6E59A5]">Burnout Risk Calculator</h1>
@@ -276,105 +276,96 @@ const BurnoutCalculator = () => {
           >
             <div ref={resultsRef}>
               <Card className="p-6 shadow-lg bg-white/80 backdrop-blur-sm border-[#E5DEFF]">
-                <div className="space-y-6">
-                  <div ref={exportRef} className="bg-white p-6 rounded-lg">
-                    <div className="bg-white p-6 rounded-lg mb-6">
-                      <img 
-                        src="/lovable-uploads/2ba54d49-c430-40cf-b7f4-6109f7e05336.png" 
-                        alt="Sunsama Logo" 
-                        className="h-8 mx-auto"
-                      />
-                    </div>
-                    <div className="text-center">
-                      <h2 className="text-2xl font-light text-[#6E59A5] mb-8">Your Results</h2>
-                      <div className="flex items-start justify-center gap-12 mb-6">
-                        <span className="text-6xl font-medium text-[#7E69AB] leading-none">
-                          {calculateRiskScore().toFixed(1)}
-                        </span>
-                        <div className="text-left flex flex-col gap-3">
-                          <span className={`text-2xl font-light ${getRiskLevel(calculateRiskScore()).color}`}>
-                            {getRiskLevel(calculateRiskScore()).level} Risk
-                          </span>
-                          <div className="space-y-2">
-                            <span className="text-[#8E9196] text-lg font-medium block">
-                              Expected Impact:
-                            </span>
-                            <span className="text-[#7E69AB] text-lg block">
-                              {getBurnoutWindow(calculateRiskScore())}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div className="flex flex-col items-center space-y-6">
+                  <div className="w-4/5">
+                    <img 
+                      src="/lovable-uploads/2ba54d49-c430-40cf-b7f4-6109f7e05336.png" 
+                      alt="Sunsama Logo" 
+                      className="h-6 mx-auto"
+                    />
                   </div>
-
-                  <BurnoutVisuals
-                    score={calculateRiskScore()}
-                    workHours={inputs.hoursWorked}
-                    sleepHours={inputs.sleepHours}
-                    selfCareHours={inputs.selfCareHours}
-                  />
-
-                  {/* Share buttons section - outside exportRef */}
-                  <div className="space-y-4">
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={() => handleShare('x')}
-                        variant="outline"
-                        className="flex-1 border-[#E5DEFF] text-[#7E69AB] hover:bg-[#F1F0FB]"
-                      >
-                        <TwitterIcon className="w-4 h-4 mr-2" />
-                        Share on X
-                      </Button>
-                      <Button
-                        onClick={() => handleShare('linkedin')}
-                        variant="outline"
-                        className="flex-1 border-[#E5DEFF] text-[#7E69AB] hover:bg-[#F1F0FB]"
-                      >
-                        <LinkedinIcon className="w-4 h-4 mr-2" />
-                        Share on LinkedIn
-                      </Button>
-                    </div>
+                  
+                  <h2 className="text-3xl font-light text-[#6E59A5]">Your Results</h2>
+                  
+                  <div className="flex flex-col items-center gap-3">
+                    <span className="text-6xl font-medium text-[#7E69AB] leading-none">
+                      {score > 10 ? `${(score * 10).toFixed(0)}%` : score.toFixed(1)}
+                    </span>
                     
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={() => handleShare('download')}
-                        variant="outline"
-                        className="flex-1 border-[#E5DEFF] text-[#7E69AB] hover:bg-[#F1F0FB]"
-                      >
-                        <DownloadIcon className="w-4 h-4 mr-2" />
-                        Download
-                      </Button>
-                      <Button
-                        onClick={() => handleShare('email')}
-                        variant="outline"
-                        className="flex-1 border-[#E5DEFF] text-[#7E69AB] hover:bg-[#F1F0FB]"
-                      >
-                        <MailIcon className="w-4 h-4 mr-2" />
-                        Share via Email
-                      </Button>
+                    <span className={`text-2xl font-light ${getRiskLevel(score).color}`}>
+                      {getRiskLevel(score).level}
+                    </span>
+                    
+                    <div className="text-center space-y-1">
+                      <span className="text-[#8E9196] text-lg font-medium block">
+                        Expected Impact:
+                      </span>
+                      <span className="text-[#7E69AB] text-lg block">
+                        {getBurnoutWindow(score)}
+                      </span>
                     </div>
-
-                    <a
-                      href="https://sunsama.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      <Button className="w-full bg-[#9b87f5] hover:bg-[#7E69AB] text-white">
-                        Try Sunsama Free
-                      </Button>
-                    </a>
                   </div>
                 </div>
               </Card>
             </div>
 
-            <BurnoutRecommendations
+            <BurnoutVisuals
+              score={calculateRiskScore()}
               workHours={inputs.hoursWorked}
               sleepHours={inputs.sleepHours}
               selfCareHours={inputs.selfCareHours}
             />
+
+            <div className="space-y-4">
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => handleShare('x')}
+                  variant="outline"
+                  className="flex-1 border-[#E5DEFF] text-[#7E69AB] hover:bg-[#F1F0FB]"
+                >
+                  <TwitterIcon className="w-4 h-4 mr-2" />
+                  Share on X
+                </Button>
+                <Button
+                  onClick={() => handleShare('linkedin')}
+                  variant="outline"
+                  className="flex-1 border-[#E5DEFF] text-[#7E69AB] hover:bg-[#F1F0FB]"
+                >
+                  <LinkedinIcon className="w-4 h-4 mr-2" />
+                  Share on LinkedIn
+                </Button>
+              </div>
+              
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => handleShare('download')}
+                  variant="outline"
+                  className="flex-1 border-[#E5DEFF] text-[#7E69AB] hover:bg-[#F1F0FB]"
+                >
+                  <DownloadIcon className="w-4 h-4 mr-2" />
+                  Download
+                </Button>
+                <Button
+                  onClick={() => handleShare('email')}
+                  variant="outline"
+                  className="flex-1 border-[#E5DEFF] text-[#7E69AB] hover:bg-[#F1F0FB]"
+                >
+                  <MailIcon className="w-4 h-4 mr-2" />
+                  Share via Email
+                </Button>
+              </div>
+
+              <a
+                href="https://sunsama.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Button className="w-full bg-[#9b87f5] hover:bg-[#7E69AB] text-white">
+                  Try Sunsama Free
+                </Button>
+              </a>
+            </div>
 
             <p className="text-xs text-center text-[#8E9196]">
               Your data is not stored or shared. This assessment is for informational purposes only.
