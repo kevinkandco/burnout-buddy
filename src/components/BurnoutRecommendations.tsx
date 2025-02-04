@@ -19,7 +19,7 @@ const BurnoutRecommendations = ({ workHours, sleepHours, selfCareHours }: Burnou
     const isHighRisk = workHours > 50 || sleepHours < 6 || selfCareHours < 4;
     const isModerateRisk = workHours > 45 || sleepHours < 7 || selfCareHours < 7;
 
-    // Work-specific recommendations for high/moderate risk
+    // Work-specific recommendations for high risk only
     if (isHighRisk) {
       recommendations.push({
         title: "Urgent: Discuss Workload",
