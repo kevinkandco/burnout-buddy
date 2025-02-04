@@ -285,7 +285,7 @@ const BurnoutCalculator = () => {
                     />
                   </div>
                   
-                  <h2 className="text-3xl font-light text-[#6E59A5]">Your Results</h2>
+                  <h2 className="text-3xl font-light text-[#6E59A5]">Your burnout risk is:</h2>
                   
                   <div className="flex flex-col items-center gap-3">
                     <span className="text-6xl font-medium text-[#7E69AB] leading-none">
