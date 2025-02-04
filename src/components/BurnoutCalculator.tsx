@@ -290,8 +290,8 @@ const BurnoutCalculator = () => {
             <div ref={resultsRef}>
               <Card className="p-6 shadow-lg bg-white/80 backdrop-blur-sm border-[#E5DEFF]">
                 <div className="space-y-6">
-                  <div ref={exportRef}>
-                    <div className="bg-gradient-to-b from-[#E5DEFF] to-transparent p-6 rounded-t-lg">
+                  <div ref={exportRef} className="bg-white p-6 rounded-lg">
+                    <div className="bg-gradient-to-b from-[#E5DEFF] to-transparent p-6 rounded-t-lg mb-6">
                       <img 
                         src="/lovable-uploads/2ba54d49-c430-40cf-b7f4-6109f7e05336.png" 
                         alt="Sunsama Logo" 
@@ -321,6 +321,7 @@ const BurnoutCalculator = () => {
                     </div>
                   </div>
 
+                  {/* Share buttons section - outside exportRef */}
                   <div className="space-y-4">
                     <div className="flex gap-2">
                       <Button
