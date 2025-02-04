@@ -72,8 +72,8 @@ const BurnoutCalculator = () => {
   const burnoutWindow = getBurnoutWindow(score);
 
   return (
-    <div className="min-h-screen bg-white p-4 sm:p-6 md:p-8">
-      <div className="max-w-2xl mx-auto space-y-8 animate-fade-in">
+    <div className="min-h-screen bg-gradient-to-b from-[#F8F6FF] via-white to-[#F1F0FB]">
+      <div className="max-w-2xl mx-auto space-y-8 animate-fade-in p-4 sm:p-6 md:p-8">
         <div className="text-center space-y-4">
           <div className="bg-white p-6 rounded-lg mb-6">
             <img 
