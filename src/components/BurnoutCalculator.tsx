@@ -75,13 +75,11 @@ const BurnoutCalculator = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#F8F6FF] via-white to-[#F1F0FB]">
       <div className="max-w-2xl mx-auto space-y-8 animate-fade-in p-4 sm:p-6 md:p-8">
         <div className="text-center space-y-4">
-          <div className="bg-white p-6 rounded-lg mb-6">
             <img 
               src="/lovable-uploads/2ba54d49-c430-40cf-b7f4-6109f7e05336.png" 
               alt="Sunsama Logo" 
-              className="h-6 mx-auto"
+              className="h-6 mx-auto mb-6"
             />
-          </div>
           <h1 className="text-4xl font-light text-[#6E59A5]">Burnout Risk Calculator</h1>
           <p className="text-[#8E9196] max-w-md mx-auto">
             Assess your risk of burnout based on your work habits and self-care practices
