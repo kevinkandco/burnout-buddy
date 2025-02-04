@@ -225,9 +225,9 @@ const BurnoutCalculator = () => {
               </div>
             </CollapsibleContent>
 
-            <div className="flex flex-col gap-4 mt-6">
+            <div className="flex flex-col gap-2 mt-4">
               {!isOpen && (
-                <p className="text-center text-[#7E69AB] text-lg">Ready to reassess?</p>
+                <p className="text-center text-[#7E69AB] text-sm">Ready to reassess?</p>
               )}
               {!showResults ? (
                 <Button
