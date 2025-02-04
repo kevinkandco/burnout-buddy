@@ -5,6 +5,8 @@ import ResultsCard from "./burnout/ResultsCard";
 import ShareSection from "./burnout/ShareSection";
 import BurnoutVisuals from "./BurnoutVisuals";
 import BurnoutRecommendations from "./BurnoutRecommendations";
+import SunsamaCTA from "./burnout/SunsamaCTA";
+import QuizTeaser from "./burnout/QuizTeaser";
 
 interface BurnoutInputs {
   hoursWorked: number;
@@ -95,6 +97,14 @@ const BurnoutCalculator = () => {
           onReset={handleReset}
         />
 
+        {!showResults && (
+          <QuizTeaser
+            workHours={inputs.hoursWorked}
+            sleepHours={inputs.sleepHours}
+            selfCareHours={inputs.selfCareHours}
+          />
+        )}
+
         {showResults && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -116,6 +126,8 @@ const BurnoutCalculator = () => {
               sleepHours={inputs.sleepHours}
               selfCareHours={inputs.selfCareHours}
             />
+
+            <SunsamaCTA score={score} />
 
             <BurnoutRecommendations
               workHours={inputs.hoursWorked}
