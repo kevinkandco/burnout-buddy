@@ -65,43 +65,54 @@ const BurnoutCalculator = () => {
     const text = `I just checked my burnout risk level using the Burnout Calculator. My risk level is ${level} (${score.toFixed(1)}/10). Check yours too!`;
     const url = window.location.href;
 
+    // Generate image first
+    let imageUrl = '';
+    if (exportRef.current) {
+      try {
+        const canvas = await html2canvas(exportRef.current);
+        imageUrl = canvas.toDataURL();
+      } catch (error) {
+        toast({
+          title: "Error generating image",
+          description: "There was an error creating the share image",
+          variant: "destructive",
+        });
+      }
+    }
+
     switch (platform) {
       case 'x':
+        // For Twitter/X, we'll need to first upload the image somewhere to get a URL
+        // Since we can't directly attach the image, we'll just share the text for now
         window.open(
           `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
           '_blank'
         );
         break;
       case 'linkedin':
+        // LinkedIn's share API doesn't support direct image uploads
         window.open(
           `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&summary=${encodeURIComponent(text)}`,
           '_blank'
         );
         break;
       case 'download':
-        if (resultsRef.current) {
-          try {
-            const canvas = await html2canvas(resultsRef.current);
-            const link = document.createElement('a');
-            link.download = 'burnout-assessment.png';
-            link.href = canvas.toDataURL();
-            link.click();
-            toast({
-              title: "Download started",
-              description: "Your assessment has been downloaded as a PNG file",
-            });
-          } catch (error) {
-            toast({
-              title: "Download failed",
-              description: "There was an error downloading your assessment",
-              variant: "destructive",
-            });
-          }
+        if (imageUrl) {
+          const link = document.createElement('a');
+          link.download = 'burnout-assessment.png';
+          link.href = imageUrl;
+          link.click();
+          toast({
+            title: "Download started",
+            description: "Your assessment has been downloaded as a PNG file",
+          });
         }
         break;
       case 'email':
         const subject = encodeURIComponent("My Burnout Risk Assessment Results");
         const body = encodeURIComponent(`${text}\n\nTry the calculator yourself at: ${url}`);
+        // For email, we can't directly attach the image, but we could include it as a data URL
+        // However, most email clients don't support this, so we'll stick to text
         window.location.href = `mailto:?subject=${subject}&body=${body}`;
         break;
     }
