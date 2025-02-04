@@ -1,9 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { CheckCircle2Icon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface Recommendation {
   title: string;
   description: string;
+  sunsamaLink: string;
 }
 
 interface BurnoutRecommendationsProps {
@@ -22,45 +24,51 @@ const BurnoutRecommendations = ({ workHours, sleepHours, selfCareHours }: Burnou
     if (isHighRisk) {
       recommendations.push({
         title: "Urgent: Discuss Workload",
-        description: "Schedule a meeting with your manager to discuss workload concerns and potential solutions. Consider requesting temporary support or deadline adjustments.",
+        description: "Schedule a meeting with your manager to discuss workload concerns. Sunsama's workload visualization tools can help you present your case with data-driven insights.",
+        sunsamaLink: "https://sunsama.com/features/workload-management"
       });
       recommendations.push({
         title: "Document Impact",
-        description: "Keep a log of how your current workload is affecting your performance and wellbeing. This will help in discussions with management.",
+        description: "Use Sunsama's time tracking and analytics to document how your current workload affects your performance, making it easier to have productive conversations with management.",
+        sunsamaLink: "https://sunsama.com/features/time-tracking"
       });
     } else if (isModerateRisk) {
       recommendations.push({
         title: "Proactive Communication",
-        description: "Share your capacity concerns with your supervisor during your next 1:1. Consider proposing solutions like task prioritization or process improvements.",
+        description: "Share your capacity concerns during your next 1:1. Sunsama's capacity planning features can help you visualize and communicate your workload effectively.",
+        sunsamaLink: "https://sunsama.com/features/capacity-planning"
       });
     }
 
-    // Standard recommendations based on specific metrics
     if (workHours > 45) {
       recommendations.push({
         title: "Optimize Work Hours",
-        description: "Review your task list and identify what can be delegated or postponed. Focus on high-impact activities during your peak productivity hours.",
+        description: "Use Sunsama's task prioritization and time-blocking features to focus on high-impact activities during your peak productivity hours.",
+        sunsamaLink: "https://sunsama.com/features/time-blocking"
       });
     }
 
     if (sleepHours < 7) {
       recommendations.push({
         title: "Improve Sleep Quality",
-        description: "Create a consistent bedtime routine and aim for 7-9 hours of sleep. Consider setting work boundaries to protect your rest time.",
+        description: "Create a consistent bedtime routine with Sunsama's daily planning tools. Set work boundaries and schedule end-of-day reminders to protect your rest time.",
+        sunsamaLink: "https://sunsama.com/features/daily-planning"
       });
     }
 
     if (selfCareHours < 7) {
       recommendations.push({
         title: "Prioritize Self-Care",
-        description: "Block dedicated time in your calendar for activities that help you recharge. Treat these as important as work meetings.",
+        description: "Use Sunsama's calendar blocking to reserve dedicated time for self-care activities. Our smart scheduling ensures these important breaks don't get overlooked.",
+        sunsamaLink: "https://sunsama.com/features/calendar-blocking"
       });
     }
 
     if (recommendations.length === 0) {
       recommendations.push({
         title: "Maintain Balance",
-        description: "You're maintaining good habits! Continue your current routine while staying mindful of any changes in workload or energy levels.",
+        description: "You're maintaining good habits! Use Sunsama's daily planning tools to keep tracking your work-life balance and stay ahead of potential burnout risks.",
+        sunsamaLink: "https://sunsama.com/features"
       });
     }
 
@@ -75,9 +83,16 @@ const BurnoutRecommendations = ({ workHours, sleepHours, selfCareHours }: Burnou
           <Card key={index} className="p-4 border-[#E5DEFF] bg-white/80 backdrop-blur-sm">
             <div className="flex items-start gap-3">
               <CheckCircle2Icon className="w-5 h-5 text-[#9b87f5] mt-1" />
-              <div>
+              <div className="flex-1">
                 <h4 className="font-medium text-[#7E69AB] mb-1">{rec.title}</h4>
-                <p className="text-sm text-[#8E9196]">{rec.description}</p>
+                <p className="text-sm text-[#8E9196] mb-3">{rec.description}</p>
+                <Button
+                  variant="outline"
+                  className="text-[#6E59A5] border-[#E5DEFF] hover:bg-[#F8F6FF] hover:text-[#6E59A5]"
+                  onClick={() => window.open(rec.sunsamaLink, '_blank')}
+                >
+                  Learn More
+                </Button>
               </div>
             </div>
           </Card>
