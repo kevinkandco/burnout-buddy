@@ -239,7 +239,7 @@ const BurnoutCalculator = () => {
               ) : (
                 <Button
                   onClick={handleReset}
-                  className="w-full bg-[#9b87f5] hover:bg-[#7E69AB] text-white"
+                  className="w-full bg-[#9b87f5] hover:bg-[#7E69AB] text-white !opacity-100"
                 >
                   Reset Calculator
                 </Button>
