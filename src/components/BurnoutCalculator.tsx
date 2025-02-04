@@ -56,9 +56,9 @@ const BurnoutCalculator = () => {
 
   const handleReset = () => {
     setInputs({
-      hoursWorked: 40,
-      sleepHours: 7,
-      selfCareHours: 5,
+      hoursWorked: 0,
+      sleepHours: 0,
+      selfCareHours: 0,
     });
     setShowResults(false);
     setIsOpen(true);
