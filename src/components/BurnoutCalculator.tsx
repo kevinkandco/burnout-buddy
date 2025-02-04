@@ -127,13 +127,13 @@ const BurnoutCalculator = () => {
               selfCareHours={inputs.selfCareHours}
             />
 
-            <SunsamaCTA score={score} />
-
             <BurnoutRecommendations
               workHours={inputs.hoursWorked}
               sleepHours={inputs.sleepHours}
               selfCareHours={inputs.selfCareHours}
             />
+
+            <SunsamaCTA score={score} />
 
             <ShareSection
               score={score}

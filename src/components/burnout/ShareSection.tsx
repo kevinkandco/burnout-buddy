@@ -104,17 +104,6 @@ const ShareSection = ({ score, riskLevel, exportRef }: ShareSectionProps) => {
           Share via Email
         </Button>
       </div>
-
-      <a
-        href="https://sunsama.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block"
-      >
-        <Button className="w-full bg-[#9b87f5] hover:bg-[#7E69AB] text-white">
-          Try Sunsama Free
-        </Button>
-      </a>
     </div>
   );
 };
