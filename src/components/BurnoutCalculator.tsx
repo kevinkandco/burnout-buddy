@@ -4,6 +4,7 @@ import InputSection from "./burnout/InputSection";
 import ResultsCard from "./burnout/ResultsCard";
 import ShareSection from "./burnout/ShareSection";
 import BurnoutVisuals from "./BurnoutVisuals";
+import BurnoutRecommendations from "./BurnoutRecommendations";
 
 interface BurnoutInputs {
   hoursWorked: number;
@@ -111,6 +112,12 @@ const BurnoutCalculator = () => {
 
             <BurnoutVisuals
               score={score}
+              workHours={inputs.hoursWorked}
+              sleepHours={inputs.sleepHours}
+              selfCareHours={inputs.selfCareHours}
+            />
+
+            <BurnoutRecommendations
               workHours={inputs.hoursWorked}
               sleepHours={inputs.sleepHours}
               selfCareHours={inputs.selfCareHours}
