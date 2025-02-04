@@ -14,6 +14,11 @@ import { motion } from "framer-motion";
 import html2canvas from "html2canvas";
 import BurnoutRecommendations from "./BurnoutRecommendations";
 import BurnoutVisuals from "./BurnoutVisuals";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 interface BurnoutInputs {
   hoursWorked: number;
@@ -28,6 +33,7 @@ const BurnoutCalculator = () => {
     selfCareHours: 5,
   });
   const [showResults, setShowResults] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const { toast } = useToast();
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -102,6 +108,7 @@ const BurnoutCalculator = () => {
 
   const handleCalculate = () => {
     setShowResults(true);
+    setIsOpen(false);
   };
 
   const handleReset = () => {
@@ -111,6 +118,7 @@ const BurnoutCalculator = () => {
       selfCareHours: 5,
     });
     setShowResults(false);
+    setIsOpen(true);
   };
 
   const score = calculateRiskScore();
@@ -127,93 +135,97 @@ const BurnoutCalculator = () => {
           </p>
         </div>
 
-        <Card className={`p-6 shadow-lg bg-white/80 backdrop-blur-sm border-[#E5DEFF] ${showResults ? 'opacity-75' : ''}`}>
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-[#7E69AB] flex items-center gap-2">
-                  Hours Worked per Week
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <InfoIcon className="h-4 w-4 text-[#9b87f5]" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Standard work week is 40 hours</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </label>
-                <span className="text-sm text-[#8E9196]">{inputs.hoursWorked}h</span>
-              </div>
-              <Slider
-                value={[inputs.hoursWorked]}
-                min={0}
-                max={100}
-                step={1}
-                disabled={showResults}
-                onValueChange={(value) => !showResults && setInputs({ ...inputs, hoursWorked: value[0] })}
-                className={`w-full ${showResults ? 'cursor-not-allowed' : ''}`}
-              />
-            </div>
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          <Card className={`p-6 shadow-lg bg-white/80 backdrop-blur-sm border-[#E5DEFF] ${showResults ? 'opacity-75' : ''}`}>
+            <CollapsibleContent>
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium text-[#7E69AB] flex items-center gap-2">
+                      Hours Worked per Week
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <InfoIcon className="h-4 w-4 text-[#9b87f5]" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Standard work week is 40 hours</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </label>
+                    <span className="text-sm text-[#8E9196]">{inputs.hoursWorked}h</span>
+                  </div>
+                  <Slider
+                    value={[inputs.hoursWorked]}
+                    min={0}
+                    max={100}
+                    step={1}
+                    disabled={showResults}
+                    onValueChange={(value) => !showResults && setInputs({ ...inputs, hoursWorked: value[0] })}
+                    className={`w-full ${showResults ? 'cursor-not-allowed' : ''}`}
+                  />
+                </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-[#7E69AB] flex items-center gap-2">
-                  Average Sleep per Night
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <InfoIcon className="h-4 w-4 text-[#9b87f5]" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Recommended sleep is 7-9 hours</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </label>
-                <span className="text-sm text-[#8E9196]">{inputs.sleepHours}h</span>
-              </div>
-              <Slider
-                value={[inputs.sleepHours]}
-                min={0}
-                max={12}
-                step={0.5}
-                disabled={showResults}
-                onValueChange={(value) => !showResults && setInputs({ ...inputs, sleepHours: value[0] })}
-                className={`w-full ${showResults ? 'cursor-not-allowed' : ''}`}
-              />
-            </div>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium text-[#7E69AB] flex items-center gap-2">
+                      Average Sleep per Night
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <InfoIcon className="h-4 w-4 text-[#9b87f5]" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Recommended sleep is 7-9 hours</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </label>
+                    <span className="text-sm text-[#8E9196]">{inputs.sleepHours}h</span>
+                  </div>
+                  <Slider
+                    value={[inputs.sleepHours]}
+                    min={0}
+                    max={12}
+                    step={0.5}
+                    disabled={showResults}
+                    onValueChange={(value) => !showResults && setInputs({ ...inputs, sleepHours: value[0] })}
+                    className={`w-full ${showResults ? 'cursor-not-allowed' : ''}`}
+                  />
+                </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-[#7E69AB] flex items-center gap-2">
-                  Self-Care Hours per Week
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <InfoIcon className="h-4 w-4 text-[#9b87f5]" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Time spent on activities that help you relax and recharge</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </label>
-                <span className="text-sm text-[#8E9196]">{inputs.selfCareHours}h</span>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium text-[#7E69AB] flex items-center gap-2">
+                      Self-Care Hours per Week
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <InfoIcon className="h-4 w-4 text-[#9b87f5]" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Time spent on activities that help you relax and recharge</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </label>
+                    <span className="text-sm text-[#8E9196]">{inputs.selfCareHours}h</span>
+                  </div>
+                  <Slider
+                    value={[inputs.selfCareHours]}
+                    min={0}
+                    max={40}
+                    step={0.5}
+                    disabled={showResults}
+                    onValueChange={(value) => !showResults && setInputs({ ...inputs, selfCareHours: value[0] })}
+                    className={`w-full ${showResults ? 'cursor-not-allowed' : ''}`}
+                  />
+                </div>
               </div>
-              <Slider
-                value={[inputs.selfCareHours]}
-                min={0}
-                max={40}
-                step={0.5}
-                disabled={showResults}
-                onValueChange={(value) => !showResults && setInputs({ ...inputs, selfCareHours: value[0] })}
-                className={`w-full ${showResults ? 'cursor-not-allowed' : ''}`}
-              />
-            </div>
+            </CollapsibleContent>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 mt-6">
               {!showResults ? (
                 <Button
                   onClick={handleCalculate}
@@ -230,8 +242,8 @@ const BurnoutCalculator = () => {
                 </Button>
               )}
             </div>
-          </div>
-        </Card>
+          </Card>
+        </Collapsible>
 
         {showResults && (
           <motion.div
