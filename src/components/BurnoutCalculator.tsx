@@ -8,7 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { InfoIcon, Share2Icon, TwitterIcon, LinkedinIcon, DownloadIcon, MailIcon } from "lucide-react";
+import { InfoIcon, TwitterIcon, LinkedinIcon, DownloadIcon, MailIcon } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from "framer-motion";
 import html2canvas from "html2canvas";
@@ -122,10 +122,6 @@ const BurnoutCalculator = () => {
     setIsOpen(true);
   };
 
-  const score = calculateRiskScore();
-  const riskLevel = getRiskLevel(score);
-  const burnoutWindow = getBurnoutWindow(score);
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F1F0FB] to-white p-4 sm:p-6 md:p-8">
       <div className="max-w-2xl mx-auto space-y-8 animate-fade-in">
@@ -230,7 +226,6 @@ const BurnoutCalculator = () => {
                     className={`w-full ${showResults ? 'cursor-not-allowed' : ''}`}
                   />
                 </div>
-              </div>
             </CollapsibleContent>
 
             <div className="flex flex-col gap-2 mt-4">
@@ -301,6 +296,7 @@ const BurnoutCalculator = () => {
                         </div>
                       </div>
                     </div>
+                  </div>
 
                   <div className="space-y-4">
                     <div className="flex gap-2">
@@ -348,14 +344,7 @@ const BurnoutCalculator = () => {
                       className="block"
                     >
                       <Button className="w-full bg-[#9b87f5] hover:bg-[#7E69AB] text-white">
-                        <div className="flex items-center justify-center gap-2">
-                        <img 
-                          src="/lovable-uploads/244b0d2d-2906-4386-9f9e-1a4f1f602f81.png" 
-                          alt="Sunsama Logo" 
-                          className="h-4"
-                        />
-                        <span>Try Free</span>
-                      </div>
+                        Try Free
                       </Button>
                     </a>
                   </div>
