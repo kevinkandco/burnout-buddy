@@ -347,7 +347,14 @@ const BurnoutCalculator = () => {
                       className="block"
                     >
                       <Button className="w-full bg-[#9b87f5] hover:bg-[#7E69AB] text-white">
-                        Try Sunsama Free
+                        <div className="flex items-center justify-center gap-2">
+                        <img 
+                          src="/lovable-uploads/244b0d2d-2906-4386-9f9e-1a4f1f602f81.png" 
+                          alt="Sunsama Logo" 
+                          className="h-4"
+                        />
+                        <span>Try Free</span>
+                      </div>
                       </Button>
                     </a>
                   </div>
